@@ -16,25 +16,21 @@
                 @error('ramble.body') <span class="mt-3 text-sms text-red-500 self-center">{{ $message }}</span> @enderror
             <form>
         @else
-            <p class="text-lg">{{ $ramble->body }}</p>
+            <p class="text-lg break-words">{{ $ramble->body }}</p>
         @endif
 
         <div class="flex items-center mt-2 space-x-3">
             <span class="text-sm text-gray-500">{{ $ramble->created_at->diffForHumans() }}</span>
-
-            @if($showPermalink)
-                <a href="{{ route('view.ramble', ['ramble' => $ramble]) }}" class="hover:underline cursor-pointer text-blue-700 font-semibold">View Full Tweet</a>
-            @endif
 
             @if($ramble->user()->is(auth()->user()))
                 <a wire:click="$toggle('edit')" class="hover:underline cursor-pointer text-blue-800 font-semibold">Edit</a>
             @endif
         </div>
 
-        <div class="flex justify-start mt-3">
+        <div class="flex justify-start mt-3 space-x-4">
             <button
                 wire:click="like"
-                class="flex items-center border border-red-500 text-red-500 rounded px-4 py-2"
+                class="flex items-center border border-red-500 text-red-500 hover:bg-red-200 rounded px-4 py-2"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -49,6 +45,22 @@
                     {{ $ramble->likes->count() }}
                 </span>
             </button>
+
+            @if($showPermalink)
+                <a href="{{ route('view.ramble', ['ramble' => $ramble]) }}" class="flex items-center border border-blue-700 text-blue-700 hover:bg-blue-200 rounded px-4 py-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                    </svg>
+                </a>
+            @endif
         </div>
+
+        @if ($ramble->mostPopularComment)
+            <div class="flex flex-col mt-6">
+                <h2 class="font-semibold text-sm uppercase">🔥 Hottest Comment</h2>
+                <h2 class="text-sm uppercase font-semibold text-gray-400">{{ $ramble->mostPopularComment->user->name }} said...</h2>
+                <p class="text-lg break-words">{{ $ramble->mostPopularComment->body }}</p>
+            </div>
+        @endif
     </div>
 </div>

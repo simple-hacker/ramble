@@ -4,9 +4,12 @@ namespace App\Http\Livewire;
 
 use App\Models\Ramble;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ShowRambles extends Component
 {
+    use WithPagination;
+    
     protected $listeners = [
         'rambleAdded' => '$refresh',
     ];

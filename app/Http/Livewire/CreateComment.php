@@ -13,6 +13,10 @@ class CreateComment extends Component
 
     public $ramble;
 
+    protected $listeners = [
+        'commentAdded' => '$refresh',
+    ];
+
     public function rules()
     {
         return [
@@ -43,7 +47,7 @@ class CreateComment extends Component
 
         $this->emit('commentAdded');
 
-        $this->reset();
+        $this->body = '';
     }
 
     public function render()

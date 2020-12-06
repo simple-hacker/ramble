@@ -38,6 +38,8 @@ class ShowComment extends Component
     {
         $this->comment->toggleLike();
 
+        $this->emit('likeToggled');
+
         $this->comment->refresh();
     }
     

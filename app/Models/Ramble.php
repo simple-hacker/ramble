@@ -12,7 +12,9 @@ class Ramble extends Model
 
     protected $guarded = [];
 
-    protected $with = ['user', 'likes', 'comments'];
+    protected $with = ['user', 'likes'];
+
+    protected $append = ['mostPopularComment'];
 
     public function user()
     {
@@ -21,6 +23,16 @@ class Ramble extends Model
 
     public function comments()
     {
-        return $this->hasMany('App\Models\Comment')->latest();
+        return $this->hasMany('App\Models\Comment')->withCount('likes')->latest();
+    }
+
+    public function getMostPopularCommentAttribute()
+    {
+        return $this->comments
+                    ->filter(function ($comment) {
+                        return $comment->likes_count > 0;
+                    })
+                    ->sortByDesc('likes_count')
+                    ->first();
     }
 }

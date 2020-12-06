@@ -5,7 +5,9 @@
 
     <livewire:create-comment :ramble="$ramble"/>
 
-    @foreach ($ramble->comments as $comment)
+    @foreach ($comments as $comment)
         <livewire:show-comment :comment="$comment" :key="'comment_' . $comment->id" />
     @endforeach
+
+    {{ $comments->links() }}
 </div>

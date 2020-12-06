@@ -12,6 +12,8 @@ class Comment extends Model
 
     protected $guarded = [];
 
+    protected $with = ['likes'];
+
     public function ramble()
     {
         return $this->belongsTo('App\Models\Ramble');

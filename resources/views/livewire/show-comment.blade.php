@@ -16,7 +16,7 @@
                 @error('comment.body') <span class="mt-3 text-sms text-red-500 self-center">{{ $message }}</span> @enderror
             <form>
         @else
-            <p class="text-lg">{{ $comment->body }}</p>
+            <p class="text-lg break-words">{{ $comment->body }}</p>
         @endif
 
         <div class="flex items-center mt-2 space-x-3">
