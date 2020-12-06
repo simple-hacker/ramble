@@ -2,12 +2,17 @@
 
 namespace App\Traits;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 trait CanLike
 {
     public function toggleLike()
-    {                     
+    {
+        if (! Auth::check()) {
+            return;
+        }
+
         $like = $this->likes->firstWhere('user_id', auth()->user()->id);
         
         if ($like) {
@@ -22,7 +27,7 @@ trait CanLike
 
     public function userHasLiked()
     {
-        return $this->likes->where('user_id', auth()->user()->id)->isNotEmpty();
+        return (Auth::check()) ? $this->likes->where('user_id', auth()->user()->id)->isNotEmpty() : false;
     }
 
     public function likes()

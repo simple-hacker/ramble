@@ -19,7 +19,7 @@ class ShowRamble extends Component
     public $showPermalink = true;
 
     protected $listeners = [
-        'commentAdded' => '$refresh',
+        'commentSaved' => '$refresh',
         'likeToggled' => '$refresh',
     ];
 

@@ -29,6 +29,8 @@ class ShowComment extends Component
         
         $this->comment->save();
 
+        $this->emit('commentSaved');
+
         $this->comment->refresh();
 
         $this->edit = false;

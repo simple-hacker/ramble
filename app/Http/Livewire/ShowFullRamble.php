@@ -14,7 +14,7 @@ class ShowFullRamble extends Component
     public Ramble $ramble;
 
     protected $listeners = [
-        'commentAdded' => 'refreshRamble',
+        'commentSaved' => 'refreshRamble',
         'likeToggled' => 'refreshRamble',
     ];
     
