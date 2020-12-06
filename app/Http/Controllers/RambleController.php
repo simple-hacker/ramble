@@ -9,6 +9,6 @@ class RambleController extends Controller
 {
     public function index(Ramble $ramble)
     {
-        dd($ramble);
+        return view('rambles.index', compact('ramble'));
     }
 }

@@ -15,6 +15,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         'App\Models\Ramble' => 'App\Policies\RamblePolicy',
         'App\Models\Like' => 'App\Policies\LikePolicy',
+        'App\Models\Comment' => 'App\Policies\CommentPolicy',
     ];
 
     /**

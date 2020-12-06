@@ -23,7 +23,7 @@
             @livewire('navigation-dropdown')
 
             <!-- Page Content -->
-            <main>
+            <main class="py-8 max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-4">
                 {{ $slot }}
             </main>
         </div>

@@ -19,11 +19,15 @@
             <p class="text-lg">{{ $ramble->body }}</p>
         @endif
 
-        <div class="flex items-center mt-2">
+        <div class="flex items-center mt-2 space-x-3">
             <span class="text-sm text-gray-500">{{ $ramble->created_at->diffForHumans() }}</span>
 
+            @if($showPermalink)
+                <a href="{{ route('view.ramble', ['ramble' => $ramble]) }}" class="hover:underline cursor-pointer text-blue-700 font-semibold">View Full Tweet</a>
+            @endif
+
             @if($ramble->user()->is(auth()->user()))
-                <a wire:click="$toggle('edit')" class="ml-3 hover:underline cursor-pointer text-blue-800 font-semibold">Edit</a>
+                <a wire:click="$toggle('edit')" class="hover:underline cursor-pointer text-blue-800 font-semibold">Edit</a>
             @endif
         </div>
 

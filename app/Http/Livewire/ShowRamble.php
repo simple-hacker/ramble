@@ -16,6 +16,8 @@ class ShowRamble extends Component
 
     public $edit = false;
 
+    public $showPermalink = true;
+
     public function rules()
     {
         return [
